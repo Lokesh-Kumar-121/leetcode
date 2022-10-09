@@ -8,8 +8,8 @@ public:
         
              map<char,int>s1;
              map<char,int>s2;
-             vector<int>arr1;
-             vector<int>arr2;
+             //vector<int>arr1;
+             //vector<int>arr2;
             
             
               for(int i=0;i<s.size();i++){
