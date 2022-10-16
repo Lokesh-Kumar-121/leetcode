@@ -1,25 +1,44 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        int arr[26]={};
+//         int arr[26]={};
         
-        for(int i=0;i<t.size();i++)
+//         for(int i=0;i<t.size();i++)
+//         {
+//             int num=t[i]-97;
+//             arr[num]++;
+//         }
+//         for(int i=0;i<s.size();i++)
+//         {
+//             int num=s[i]-97;
+//             arr[num]--;
+//         }
+//         int res;
+//         for(int i=0;i<26;i++)
+//         {
+//             if(arr[i]==1)
+//                 res=i+97;
+//         }
+        
+//         return res;
+        
+        
+        unordered_map<char,int>m;
+        for(auto x:t)
         {
-            int num=t[i]-97;
-            arr[num]++;
+            m[x]++;
         }
-        for(int i=0;i<s.size();i++)
+         for(auto x:s)
         {
-            int num=s[i]-97;
-            arr[num]--;
+            m[x]--;
         }
-        int res;
-        for(int i=0;i<26;i++)
+        char z;
+        for(auto x:m)
         {
-            if(arr[i]==1)
-                res=i+97;
+            if(x.second != 0)
+                z=x.first;
         }
         
-        return res;
+        return z;
     }
 };
