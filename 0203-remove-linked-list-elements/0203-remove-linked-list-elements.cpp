@@ -15,7 +15,10 @@ public:
         ListNode *p=head,*t=NULL;
         while(p->next){
             if(p->next->val==val){
+                t=p->next;
                 p->next=p->next->next;
+                
+                delete t;
             }
             else
                 p=p->next;
