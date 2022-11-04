@@ -20,8 +20,8 @@ public:
             m2[t[i]]=i;
         }
         
-        if(m1.size() != m2.size())
-            return false;
+        // if(m1.size() != m2.size())
+        //     return false;
         
         for(int i=0;i<n;i++)
         {
