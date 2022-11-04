@@ -6,15 +6,54 @@ using namespace std;
 vector<int> find(int arr[], int n , int x )
 {
     // code here
-    int first=lower_bound(arr,arr+n,x)-arr;
-    int last=upper_bound(arr,arr+n,x)-arr;
-    last--;
-    if(arr[first] != x)
-        first=-1;
-    if(arr[last] != x)
-        last=-1;
+    int first=-1,last=-1;
+    int left=0,right=n-1;
+    int mid;
+    while(left<=right)
+    {
+        mid=(left+right)/2;
         
+        if(arr[mid] > x)
+            right=mid-1;
+        else if(arr[mid] < x)
+            left=mid+1;
+            
+        else
+        {
+            if(mid==0 || arr[mid]!=arr[mid-1]){
+                first=mid;
+                break;
+            }
+            else
+                right=mid-1;
+        }
+    }
+    
+    left=0,right=n-1;
+    
+    while(left<=right)
+    {
+        mid=(left+right)/2;
+        
+        if(arr[mid] > x)
+            right=mid-1;
+        else if(arr[mid] < x)
+            left=mid+1;
+            
+        else
+        {
+            if(mid==n-1 || arr[mid]!=arr[mid+1]){
+                last=mid;
+                break;
+            }
+            else
+                left=mid+1;
+        }
+    }
+    
     return {first,last};
+    
+    
 }
 
 //{ Driver Code Starts.
