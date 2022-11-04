@@ -7,29 +7,47 @@ public:
         
         int n=s.size();
         
-        unordered_map<char,int>m1;
-        unordered_map<char,int>m2;
-        
-        for(int i=0;i<s.size();i++)
-        {
-            m1[s[i]]=i;
-        }
-        
-        for(int i=0;i<s.size();i++)
-        {
-            m2[t[i]]=i;
-        }
-        
-        // if(m1.size() != m2.size())
-        //     return false;
+        unordered_map<char,char>m;
+        unordered_set<char>sett;
         
         for(int i=0;i<n;i++)
         {
-            if(m1[s[i]] != m2[t[i]])
-                return false;
+            if(m.find(s[i]) == m.end())
+            {
+                if(sett.find(t[i]) == sett.end())
+                {
+                    m[s[i]]=t[i];
+                    sett.insert(t[i]);
+                }
+                else
+                    return false;
+            }
+            else
+            {
+                if(m[s[i]] != t[i])
+                    return false;
+            }
+            
         }
         
-        return true;
         
+        return true;
     }
 };
+
+
+
+//             if(m.find(s[i]) == m.end())
+//             {
+                
+//                 if(sett.find(t[i]) == sett.end())
+//                    m[s[i]]=t[i];
+                
+//                 else
+//                     return false;
+//             }
+//             else
+//             {
+//                 if(m[s[i]] != t[i])
+//                     return false;
+//             }
