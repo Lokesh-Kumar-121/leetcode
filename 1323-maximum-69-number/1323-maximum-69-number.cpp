@@ -4,7 +4,7 @@ public:
      
         string str=to_string(num);
         //int n=str.size();
-        for(int i=0;i<str.size();i++)
+        for(int i=0;i<str.length();i++)
         {
             if(str[i]=='6'){
                 str[i]='9';
