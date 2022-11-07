@@ -3,8 +3,8 @@ public:
     int maximum69Number (int num) {
      
         string str=to_string(num);
-        int n=str.size();
-        for(int i=0;i<n;i++)
+        //int n=str.size();
+        for(int i=0;i<str.length();i++)
         {
             if(str[i]=='6'){
                 str[i]='9';
