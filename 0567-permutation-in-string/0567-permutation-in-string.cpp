@@ -64,7 +64,7 @@ public:
         // for(auto x:arr2)
         //     cout<<x<<" ";
         
-        int i=0,j=n1;
+        int i=0,j=n1-1;
         
         while(j<n2)
         {
@@ -72,12 +72,13 @@ public:
                 return true;
             
             arr2[s2[i] - 'a']--;
-            i++;
-            arr2[s2[j++] - 'a']++;
+            i++;j++;
+            if(j<n2)
+                arr2[s2[j] - 'a']++;
             
         }
-        if(cmphash(arr1,arr2))
-                return true;
+        // if(cmphash(arr1,arr2))
+        //         return true;
         
         return false;
         
