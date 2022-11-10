@@ -5,14 +5,13 @@ public:
         int findrow=-1;
         for(int i=0;i<matrix.size();i++)
         {
-            for(int j=0;j<matrix[i].size();j++)
-            {
-               if(target >= matrix[i][j] && target <= matrix[i][matrix[i].size()-1])
+           
+               if(target >= matrix[i][0] && target <= matrix[i][matrix[i].size()-1])
                {
                    findrow=i;
                    break;
                }
-            }
+            
         }
         
         //cout<<findrow<<endl;
