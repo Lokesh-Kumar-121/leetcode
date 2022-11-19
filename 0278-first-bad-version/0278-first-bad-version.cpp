@@ -19,6 +19,8 @@ public:
         while(left <= right)
         {
             mid=left+(right-left)/2;
+            
+            //mid=(int)(left+right)/2;
             //cout<<mid<<" ";
             if(isBadVersion(mid) == false)
                 left=mid+1;
@@ -30,7 +32,7 @@ public:
                 }
                 else
                     right=mid-1;
-               // res=mid;
+               //   res=mid;
             }
         }
         return res;
