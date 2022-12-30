@@ -9,7 +9,7 @@ class Solution {
   
     int func(int n,vector<int>&arr,vector<int>&dp)
     {
-        if(n<=0)
+        if(n==0)
         return 0;
         
         if(dp[n] != -1)
