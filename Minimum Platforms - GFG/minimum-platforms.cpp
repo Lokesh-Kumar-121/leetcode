@@ -25,7 +25,7 @@ class Solution{
     	
     	int i=1,j=0;
     	int count=1;
-    	int mx=INT_MIN;
+    	//int mx=INT_MIN;
     	
     	while(i<n && j<n)
     	{
@@ -36,12 +36,12 @@ class Solution{
     	    }
     	    else
     	    {
-    	        count--;j++;
+    	        i++;j++;
     	    }
-    	    mx=max(mx,count);
+    	    //mx=max(mx,count);
     	}
     	
-    	return mx;
+    	return count;
     }
 };
 
