@@ -16,6 +16,13 @@ class Solution{
     	sort(arr,arr+n);
     	sort(dep,dep+n);
     	
+    // 	for(int i=0;i<n;i++)
+    // 	    cout<<arr[i]<<" ";
+    // 	cout<<endl;
+    // 	for(int i=0;i<n;i++)
+    // 	    cout<<dep[i]<<" ";
+    // 	cout<<endl;
+    	
     	int i=1,j=0;
     	int count=1;
     	int mx=INT_MIN;
