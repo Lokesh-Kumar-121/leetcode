@@ -13,30 +13,65 @@ class Solution{
     // l : starting index of the array i.e 0
     // r : ending index of the array i.e size-1
     // k : find kth smallest element and return using this function
+    int cnt(int mid, int arr[],int n){
+        int c=0;
+        for(int i=0;i<n;i++){
+            if(arr[i] <= mid)
+            c++;
+        }
+        return c;
+    }
     int kthSmallest(int arr[], int l, int r, int k) {
         //code here
-        //int n=sizeof(arr)/sizeof(arr[0]);
+        // priority_queue<int>pq;
+        // //int ans;
+        // for(int i=l;i<=r;i++)
+        // {
+        //     pq.push(arr[i]);
+            
+        //     if(pq.size()>k)
+        //     {
+               
+        //         pq.pop();
+        //     }
+                
+           
+        // }
         
-        priority_queue<int> pq;    // max heap
-      // priority_queue<int,vector<int>,greater<int>> pq;  //min heap
-       
-       for(int i=l;i<=r;i++)
-       {
-           pq.push(arr[i]);
-           if(pq.size()>k)
-           pq.pop();
-       }
-       
-    //   for(int i=0;i<k-1;i++)
-    //   {
-    //     //   int z=pq.top();
-    //     //   cout<<z<<" ";
-    //       pq.pop();
-    //   }
-       //cout<<endl;
-       int x=pq.top();
-       return x;
+        // return pq.top();
+        r+=1;
+        int n=r;
+        int mn=*min_element(arr,arr+r);
+        int mx=*max_element(arr,arr+r);
         
+        //cout<<mn<<" "<<mx<<endl;
+        int mid;
+        while(mn <= mx)
+        {
+            mid=mn+(mx-mn)/2;
+            //cout<<mid<<" ";
+            
+            if(cnt(mid,arr,n) < k)
+            {
+                mn=mid+1;
+            }
+            else
+            {
+                if( cnt(mid-1,arr,n) < k)
+                {
+                    return mid;
+                }
+                else
+                {
+                    mx=mid-1;
+                }
+            }
+            
+            
+        }
+        
+        
+        return -1;
     }
 };
 
