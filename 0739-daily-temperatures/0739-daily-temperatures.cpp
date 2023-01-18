@@ -1,43 +1,72 @@
 class Solution {
 public:
-    vector<int> dailyTemperatures(vector<int>& temperatures) {
+    vector<int> dailyTemperatures(vector<int>& t) {
         
-//         vector<int>res;
-//         for(int i=0;i<t.size();i++)
+//         int count;
+//         int n=t.size();
+//         stack<int>st;
+//         for(int i=n-1;i>=0;i--)
 //         {
-//             for(int j=i+1;j<=t.size();j++)
+//             vector<int>arr;
+//             count=1;
+//             if(st.empty())
 //             {
-//                 if(j==t.size())
-//                 {
-//                     res.push_back(0);
-//                     break;
-//                 }
-//                 if(t[j] > t[i])
-//                 {
-//                     res.push_back(j-i);
-//                     break;
-//                 }
-                
+//                 st.push(t[i]);
+//                 t[i]=0;   
 //             }
+//             else
+//             {
+//                 while(!st.empty() && st.top() <= t[i])
+//                 {
+//                     int temp=st.top();
+//                     arr.push_back(temp);
+//                     st.pop();
+//                     count++;
+                    
+//                 }
+//                 if(st.empty())
+//                 {
+//                     st.push(t[i]);
+//                     t[i]=0;
+//                 }
+//                 else
+//                 {
+//                     st.push(t[i]);
+//                     t[i]=count;
+//                     for(int i=arr.size()-1;i>=0;i--)
+//                     {
+//                         st.push(arr[i]);
+//                     }
+                    
+//                 }
+                   
+//             }
+//              arr.clear();
 //         }
-//         return res;
-        
-         int n = temperatures.size();
-
-        vector<int> ans(n);
-        stack<int> st;
-
-        for(int i = 0 ; i < n ; i++)
+//         return t;
+        vector<int>res(t.size());
+        stack<int>st;
+        for(int i=0;i<t.size();i++)
         {
-            while(st.size() > 0 && temperatures[st.top()] < temperatures[i] )
+            if(st.empty() || t[i] <= t[st.top()])
             {
-                ans[st.top()] = i - st.top();
-                st.pop();
+                st.push(i);
             }
+            // else if(!st.empty() && arr[i] > arr[st.top()])
+            // {
+                while(!st.empty() && t[i] > t[st.top()])
+                {
+                    int temp=st.top();
+                    res[temp]=i-temp;
+                    st.pop();
+                }
+            
             st.push(i);
+                    
+            // }
         }
-        return ans;
-
-
+        return res;
     }
 };
+
+//73 
