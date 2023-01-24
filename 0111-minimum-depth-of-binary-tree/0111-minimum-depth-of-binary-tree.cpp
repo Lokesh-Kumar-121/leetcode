@@ -11,16 +11,22 @@
  */
 class Solution {
 public:
-    int solve(TreeNode* root){
-         if(!root)
-            return INT_MAX-1;
-        if(!root->left && !root->right)
+    
+    int solve(TreeNode * root)
+    {
+        if(!root)
+            return INT_MAX;
+        if(root->left == NULL && root->right==NULL)
+        {
             return 1;
+        }
+        
         return 1+min(solve(root->left),solve(root->right));
     }
+    
     int minDepth(TreeNode* root) {
-       if(!root)
-           return 0;
+        if(!root)
+            return 0;
         return solve(root);
     }
 };
