@@ -149,10 +149,10 @@ class Solution
         
         while(!q.empty())
         {
-            int n=q.size();
+            //int n=q.size();
             pair<Node*,int>pp;
-            for(int i=0;i<n;i++)
-            {
+            // for(int i=0;i<n;i++)
+            // {
                 pp=q.front();
                 q.pop();
                 mapp[pp.second].push_back(pp.first->data);
@@ -160,7 +160,7 @@ class Solution
                     q.push({pp.first->left,pp.second-1});
                 if(pp.first->right)
                     q.push({pp.first->right,pp.second+1});
-            }
+            // }
         }
         
         for(auto x:mapp)
