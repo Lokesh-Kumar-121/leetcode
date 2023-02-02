@@ -1,30 +1,54 @@
 class Solution {
 public:
+    
+    void dfs(int row,int col,vector<vector<char>>&grid)
+    {
+        if(row >= grid.size() || col >= grid[0].size())
+            return;
+        
+        grid[row][col] = '#';
+        
+        if(row < grid.size() - 1 && grid[row+1][col] == '1')
+            dfs(row+1,col,grid);
+        
+        if(col < grid[0].size() - 1 && grid[row][col+1] == '1')
+            dfs(row,col+1,grid);
+        
+        if(row > 0 && grid[row-1][col] == '1')
+            dfs(row-1,col,grid);
+        
+        if(col > 0 && grid[row][col-1] == '1')
+            dfs(row,col-1,grid);
+        
+//         if(row < grid.size() - 1 && col < grid[0].size() - 1 && grid[row+1][col+1] == '1')
+//             dfs(row+1,col+1,grid);
+        
+//         if(row > 0 && col > 0 && grid[row-1][col-1] == '1')
+//             dfs(row-1,col-1,grid);
+        
+//         if(row > 0 && col < grid[0].size() - 1 && grid[row-1][col+1] == '1')
+//             dfs(row-1,col+1,grid);
+        
+//         if(row < grid.size() - 1 && col > 0 && grid[row+1][col-1] == '1')
+//             dfs(row+1,col-1,grid);
+        
+    }
+    
     int numIslands(vector<vector<char>>& grid) {
         
-         int m = grid.size(), n = m ? grid[0].size() : 0, islands = 0, offsets[] = {0, 1, 0, -1, 0};
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1') {
-                    islands++;
-                    grid[i][j] = '0';
-                    queue<pair<int, int>> todo;
-                    todo.push({i, j});
-                    while (!todo.empty()) {
-                        pair<int, int> p = todo.front();
-                        todo.pop();
-                        for (int k = 0; k < 4; k++) {
-                            int r = p.first + offsets[k], c = p.second + offsets[k + 1];
-                            if (r >= 0 && r < m && c >= 0 && c < n && grid[r][c] == '1') {
-                                grid[r][c] = '0';
-                                todo.push({r, c});
-                            }
-                        }
-                    }
+        int count=0;
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                if(grid[i][j] == '1')
+                {
+                    count++;
+                    dfs(i,j,grid);
                 }
             }
         }
-        return islands;
         
+        return count;
     }
 };
