@@ -24,7 +24,7 @@ public:
 	
 	int findMaxSum(int *arr, int n) {
 	    // code here
-	   vector<int>dp(1000005,-1);
+	   vector<int>dp(n+1,-1);
 	    return func(0,arr,n,dp);
 	}
 };
