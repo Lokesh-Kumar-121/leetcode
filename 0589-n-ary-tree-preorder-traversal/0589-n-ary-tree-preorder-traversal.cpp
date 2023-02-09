@@ -19,33 +19,27 @@ public:
 */
 
 class Solution {
-private:
-    // vector<int>v;
-    //  void pre(Node* root){
-    //      if(!root)return;
-    //      pre(root->);
-    //      v.push_back(root->val);
-    //      pre(root->);
-    //  } 
-    // vector<int> preorder(Node* root) {
-    //     pre(root);
-    //     return v;
-    // }
+public:
     
-    void travel(Node* root, vector<int>& result) {
-        if (root == nullptr) {
+    void dfs(Node* root,vector<int>&res)
+    {
+        if(!root)
             return;
-        }
         
-        result.push_back(root -> val);
-        for (Node* child : root -> children) {
-            travel(child, result);
+        res.push_back(root->val);
+        for(int i=0;i<root->children.size();i++)
+        {
+            dfs(root->children[i],res);
         }
     }
-public:
+    
     vector<int> preorder(Node* root) {
-        vector<int> result;
-        travel(root, result);
-        return result;
+        if(!root)
+            return {};
+        vector<int>res;
+        
+        dfs(root,res);
+        
+        return res;
     }
 };
