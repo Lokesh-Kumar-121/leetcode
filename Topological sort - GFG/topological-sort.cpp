@@ -8,43 +8,77 @@ class Solution
 	public:
 	//Function to return list containing vertices in Topological order. 
 	
-	void dfs(int node,vector<int>adj[],vector<int>&vis,vector<int>&res)
-	{
-	    vis[node] = 1;
-	    for(int i=0;i<adj[node].size();i++)
-	    {
-	        if(vis[adj[node][i]] == 0)
-	        {
-	            dfs(adj[node][i],adj,vis,res);
-	        }
-	    }
+// 	void dfs(int node,vector<int>adj[],vector<int>&vis,vector<int>&res)
+// 	{
+// 	    vis[node] = 1;
+// 	    for(int i=0;i<adj[node].size();i++)
+// 	    {
+// 	        if(vis[adj[node][i]] == 0)
+// 	        {
+// 	            dfs(adj[node][i],adj,vis,res);
+// 	        }
+// 	    }
 	    
-	    res.push_back(node);
-	}
+// 	    res.push_back(node);
+// 	}
 	
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
 	    // code here
-	    vector<int>res;
-	   // stack<int>st;
-	    vector<int>vis(V,0);
+	   // vector<int>res;
+	   //// stack<int>st;
+	   // vector<int>vis(V,0);
 	    
-	    for(int i=0;i<vis.size();i++)
-	    {
-	        if(vis[i] == 0)
-	            dfs(i,adj,vis,res);
-	    }
-	    
-	   // while(!st.empty())
+	   // for(int i=0;i<vis.size();i++)
 	   // {
-	   //     res.push_back(st.top());
-	   //     st.pop();
-	        
+	   //     if(vis[i] == 0)
+	   //         dfs(i,adj,vis,res);
 	   // }
-	   
-	   reverse(res.begin(),res.end());
 	    
-	    return res;
+	   //// while(!st.empty())
+	   //// {
+	   ////     res.push_back(st.top());
+	   ////     st.pop();
+	        
+	   //// }
+	   
+	   //reverse(res.begin(),res.end());
+	    
+	   // return res;
+	   
+	   
+	   //*********///////**********//
+	   //   kahn's algo
+	   
+	   vector<int>indegree(V,0);
+	   for(int i=0;i<V;i++)
+	   {
+	       for(auto x:adj[i])
+	        indegree[x]++;
+	   }
+	   
+	   queue<int>q;
+	   for(int i=0;i<indegree.size();i++)
+	   {
+	       if(indegree[i] == 0)
+	        q.push(i);
+	   }
+	   vector<int>res;
+	   while(!q.empty())
+	   {
+	       int node=q.front();
+	       q.pop();
+	       res.push_back(node);
+	       
+	       for(int i=0;i<adj[node].size();i++)
+	       {
+	           indegree[adj[node][i]]--;
+	           if(indegree[adj[node][i]] == 0)
+	            q.push(adj[node][i]);
+	       }
+	   }
+	   
+	   return res;
 	}
 };
 
