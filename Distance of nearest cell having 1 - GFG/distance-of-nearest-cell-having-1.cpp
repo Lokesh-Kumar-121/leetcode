@@ -7,53 +7,64 @@ class Solution
 {
     public:
     //Function to find distance of nearest 1 in the grid for each cell.
-	vector<vector<int>>nearest(vector<vector<int>>grid)
+	vector<vector<int>>nearest(vector<vector<int>>mat)
 	{
 	    // Code here
-	    int n = grid.size();
-    int m = grid[0].size();
-    vector<vector<int>> res(n, vector<int>(m, INT_MAX));
-    queue<pair<int, int>> q;
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            if (grid[i][j] == 1)
+	    int n=mat.size();
+	    int m=mat[0].size();
+	    
+	    vector<vector<int>>vis(n,vector<int>(m,0));
+	   // vector<vector<int>>res(n,vector<int>(m,0));
+	   
+	   queue<vector<int>>q;
+	   
+	   for(int i=0;i<n;i++)
+	   {
+	       for(int j=0;j<m;j++)
+	       {
+	           if(mat[i][j] == 1)
+	           {
+	               q.push({i,j,0});
+	               vis[i][j] = 1;
+	           }
+	       }
+	   }
+	   
+	   while(!q.empty())
+	   {
+	       vector<int>temp=q.front();
+	       q.pop();
+	       int row=temp[0];
+	       int col=temp[1];
+	       int dist=temp[2];
+	       
+	       mat[row][col] = dist;
+	       
+	       if(row < mat.size()-1 && vis[row+1][col] == 0)
             {
-                q.push({i, j});
-                res[i][j] = 0;
+                q.push({row+1,col,dist+1});
+                vis[row+1][col] = 1;
             }
-        }
-    }
-
-    vector<pair<int, int>> move = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-
-    while (!q.empty())
-    {
-
-        int currX = q.front().first;
-        int currY = q.front().second;
-        q.pop();
-
-        for (auto moves : move)
-        {
-            int x = currX + moves.first;
-            int y = currY + moves.second;
-
-            if (x < 0 || y < 0 || x >= n || y >= m)
-                continue;
-            else
+            if(col < mat[0].size()-1 && vis[row][col+1] == 0)
             {
-                if (res[x][y] > res[currX][currY] + 1)
-                {
-                    res[x][y] = res[currX][currY] + 1;
-                    q.push({x, y});
-                }
+                q.push({row,col+1,dist+1});
+                vis[row][col+1] = 1;
             }
-        }
-    }
-    return res;
+            if(row > 0 && vis[row-1][col] == 0)
+            {
+                q.push({row-1,col,dist+1});
+                vis[row-1][col] = 1; 
+            }
+            if(col > 0 && vis[row][col-1] == 0)
+            {
+                q.push({row,col-1,dist+1});
+                vis[row][col-1] = 1; 
+            }
+            
+	   }
+	   
+	   return mat;
+	    
 	}
 };
 
