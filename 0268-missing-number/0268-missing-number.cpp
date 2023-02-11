@@ -1,7 +1,7 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-     
+     //////XOR///////
 //         int n=nums.size();
 //         int x=0;
 //         for(auto z:nums)
@@ -17,18 +17,45 @@ public:
         
 //         return x;
         
-        vector<int>hash(nums.size() + 1,0);
-        for(int i=0;i<nums.size();i++)
+        /////hashhh//////
+//         vector<int>hash(nums.size() + 1,0);
+//         for(int i=0;i<nums.size();i++)
+//         {
+//             hash[nums[i]] = 1;
+//         }
+        
+//         for(int i=0;i<hash.size();i++)
+//         {
+//             if(hash[i] == 0)
+//                 return i;
+//         }
+//         return -1;
+        
+        
+       //////CYCLIC SORT/////
+        
+        int n=nums.size();
+        
+        int i=0;
+        while(i<n)
         {
-            hash[nums[i]] = 1;
+            if(nums[i] != i && nums[i] != n)
+            {
+                swap(nums[i],nums[nums[i]]);
+            }
+            else
+                i++;
         }
         
-        for(int i=0;i<hash.size();i++)
+        
+        for(int i=0;i<nums.size();i++)
         {
-            if(hash[i] == 0)
+            if(nums[i] != i)
                 return i;
         }
-        return -1;
+        
+        return n;
     }
+    
 };
 
