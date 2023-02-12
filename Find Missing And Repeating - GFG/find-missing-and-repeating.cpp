@@ -6,39 +6,34 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public:
-    int *findTwoElement(int *arr, int n) {
+    int *findTwoElement(int *nums, int n) {
         // code here
-        int res[2];
-        int *ptr=res;
         
-        unordered_set<int>sett;
+        int res[2];
+        int *ans = res;
+        
+        int i=0;
+        while(i<n)
+        {
+            if(nums[i] != i+1 && nums[i] != nums[nums[i] - 1])
+                swap(nums[i],nums[nums[i] - 1]);
+            else
+                i++;
+        }
         
         for(int i=0;i<n;i++)
         {
-            sett.insert(arr[i]);
-        }
-        
-        for(int i=1;i<=n;i++)
-        {
-            if(sett.find(i) == sett.end()){
-                res[1]=i;
+            if(nums[i] != i+1)
+            {
+                res[0]=nums[i];
+                res[1]=i+1;
                 break;
             }
+                
         }
-        
-        int sum1=0;
-        int sum2=0;
-        for(int i=0;i<n;i++)
-        {
-            sum1+=arr[i];
-            sum2+=i+1;
-        }
-        
-        sum1+=res[1];
-        
-        res[0]=sum1-sum2;
-        
-        return ptr;
+       
+       
+       return ans;
     }
 };
 
