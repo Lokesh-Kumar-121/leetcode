@@ -10,12 +10,12 @@ class Solution{
         // Complete the function
         int mod = 1000000007;
         sort(a,a+n);
-        long long int ans=0;
-        for(long long int i=0;i<n;i++)
+         long int ans=0;
+        for(long int i=0;i<n;i++)
         {
             // ans = ((ans %mod)+((a[i]%mod) * (i%mod))%mod)%mod;
             // ans=ans%mod;
-            long long int  x = ((a[i]%mod)*(i%mod))%mod;
+            long  int  x = ((a[i]%mod)*(i%mod))%mod;
             ans = (( ans%mod) + (x%mod))%mod;
         }
         
