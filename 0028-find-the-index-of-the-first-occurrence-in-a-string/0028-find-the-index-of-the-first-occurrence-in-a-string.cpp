@@ -30,45 +30,46 @@ public:
         
 //         return i-m;
         
-         int n=haystack.length();
-         int m=needle.length();
+//          int n=haystack.length();
+//          int m=needle.length();
         
-        vector<int>arr;
+//         vector<int>arr;
         
-        for(int i=0;i<n;i++)
-        {
-            if(haystack[i] == needle[0])
-                arr.push_back(i);
-        }
+//         for(int i=0;i<n;i++)
+//         {
+//             if(haystack[i] == needle[0])
+//                 arr.push_back(i);
+//         }
         
-        int ind=-1;
-        for(int i=0;i<arr.size();i++)
-        {
+//         int ind=-1;
+//         for(int i=0;i<arr.size();i++)
+//         {
            
-            int x=arr[i],y=0;
+//             int x=arr[i],y=0;
             
-            while(x<n && y<m)
-            {
-                if(haystack[x] == needle[y])
-                {
-                    x++;y++;
-                }
-                else
-                    break;
-                if(y==m)
-                {
-                    ind=arr[i];
-                }
-            }
-            if(ind!=-1)
-                break;
-        }
+//             while(x<n && y<m)
+//             {
+//                 if(haystack[x] == needle[y])
+//                 {
+//                     x++;y++;
+//                 }
+//                 else
+//                     break;
+//                 if(y==m)
+//                 {
+//                     ind=arr[i];
+//                 }
+//             }
+//             if(ind!=-1)
+//                 break;
+//         }
         
-        return ind;
+//         return ind;
+        
+        return haystack.find(needle);
         
        
         
-      
-            
+
     }
 };
