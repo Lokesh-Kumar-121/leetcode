@@ -1,43 +1,67 @@
 class Solution {
 public:
-    bool canPlaceFlowers(vector<int>& a, int n) {
-        int c=0;
-        if(a.size()==1 && (n==1||n==0) && a[0]==0)
-        return true;
-        if(n>a.size())
-        return false;
-        for(int i=0;i<a.size();i++)
+    bool canPlaceFlowers(vector<int>& bed, int n) {
+        
+        if(n<=0)
+            return true;
+        if(bed.size() == 1)
         {
-            if(i==0)
-            {
-                if(a[i]==0 && a[i+1]==0)
-                {
-                    a[i]=1;
-                    c++;
-                }
-                else
-                continue;
-            }
-            else if(i==a.size()-1)
-            {
-                if(a[i]==0 && a[i-1]==0)
-                {
-                    a[i]=1;
-                    c++;
-                }
-            }
+            if(bed[0] == 1)
+                return false;
             else
             {
-                if(a[i]==0 && a[i+1]==0 && a[i-1]==0)
+                if(n<=1)
+                    return true;
+            }
+            return false;
+        }
+        
+        for(int i=0;i<bed.size();i++)
+        {
+            if(i == 0)
+            {
+                if(bed[i] == 0 && bed[i+1] == 0)
                 {
-                    a[i]=1;
-                    c++;
+                    bed[i] = 1;
+                    n--;
+                    if(n <= 0)
+                        return true;
+                }
+                
+            }
+            
+            else if(i == bed.size()-1)
+            {
+                if(bed[i] == 0 && bed[i-1] == 0)
+                {
+                    bed[i] = 1;
+                    n--;
+                    if(n <= 0)
+                        return true;
+                }
+                
+            }
+            
+            else
+            {
+                if(bed[i] == 0 && bed[i-1] == 0 && bed[i+1] == 0)
+                {
+                    bed[i] = 1;
+                    n--;
+                    if(n <= 0)
+                        return true;
                 }
             }
+            
         }
-        if(c>=n)
-        return true;
-        else
+        
         return false;
     }
 };
+
+
+// 1 0 1 0 1
+// 0 1 0 1 0
+
+// 1 0 1 0 1 0
+// 0 1 0 1 0 1
