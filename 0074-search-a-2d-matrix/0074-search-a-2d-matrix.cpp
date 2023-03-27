@@ -37,6 +37,10 @@ public:
         
 //         return false;
         
+        // log(n*m)
+        // n+m
+        
+        
         int row=matrix.size();
         int col=matrix[0].size();
         
@@ -53,6 +57,8 @@ public:
         
         return false;
         
+        
+        // try / and % also
        
     }
 };
