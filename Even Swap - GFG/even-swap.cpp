@@ -19,11 +19,11 @@ class Solution
             {
                 if(a[i] & 1)
                 {
-                    if(j == n-1 && a[j] == a[j-1])
-                    {
-                        sort(a.begin()+i,a.end(),greater<int>());
-                        continue;
-                    }
+                    // if(j == n-1 && a[j] == a[j-1])
+                    // {
+                    //     sort(a.begin()+i,a.end(),greater<int>());
+                    //     continue;
+                    // }
                     
                     while(j<n && a[j]&1)
                     {
@@ -35,11 +35,11 @@ class Solution
                 }
                 else
                 {
-                    if(j == n-1 && a[j] == a[j-1])
-                    {
-                        sort(a.begin()+i,a.end(),greater<int>());
-                        continue;
-                    }
+                    // if(j == n-1 && a[j] == a[j-1])
+                    // {
+                    //     sort(a.begin()+i,a.end(),greater<int>());
+                    //     continue;
+                    // }
                     
                     while(j<n && !(a[j]&1))
                     {
