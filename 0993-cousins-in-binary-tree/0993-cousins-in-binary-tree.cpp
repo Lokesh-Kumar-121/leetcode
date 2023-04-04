@@ -26,23 +26,23 @@ public:
             int n = q.size();
             for(int i=0;i<n;i++)
             {
-            TreeNode* node = q.front().first;
-            int parent = q.front().second.first;
-            int dep = q.front().second.second;
-            q.pop();
+                TreeNode* node = q.front().first;
+                int parent = q.front().second.first;
+                int dep = q.front().second.second;
+                q.pop();
                 
-            if(node->val == x)
-            {
-                xb = true;
-                xx = {parent,dep};
+                if(node->val == x)
+                {
+                    xb = true;
+                    xx = {parent,dep};
                 
-            }
+                }
             
-            if(node->val == y)
-            {
-                yb = true;
-                yy = {parent,dep};
-            }
+                if(node->val == y)
+                {
+                    yb = true;
+                    yy = {parent,dep};
+                }
                 
                 if(node->left)
                     q.push({node->left,{node->val,dep+1}});
@@ -50,12 +50,15 @@ public:
                     q.push({node->right,{node->val,dep+1}});
             }
             
-            if(xb && yb)
+            if(xb || yb)
             {
                 if(xx.first != yy.first && xx.second == yy.second)
                     return true;
                 return false;
             }
+            
+            // if(xb || yb)
+            //     return false
             
             
         }
