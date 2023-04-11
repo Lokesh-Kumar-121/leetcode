@@ -2,7 +2,7 @@ class Solution {
 public:
     string removeStars(string s) {
         
-        stack<int>st;
+        stack<char>st;
         for(int i=0;i<s.length();i++)
         {
             if(st.empty())
@@ -18,8 +18,11 @@ public:
             }
         }
         
+        
+
+        
         s.clear();
-        s="";
+        // s="";
         while(!st.empty())
         {
             s+=st.top();
