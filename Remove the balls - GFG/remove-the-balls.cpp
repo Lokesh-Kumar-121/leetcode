@@ -12,45 +12,45 @@ class Solution {
   public:
     int finLength(int N, vector<int> color, vector<int> radius) {
     
-    // // stack<int>st;
-    // vector<long long> nums,arr2;
-    // nums.push_back(color[0]);
-    // arr2.push_back(radius[0]);
-    // for(long long i=1;i<N;i++)
-    // {
-    //     if(color[i] == nums[arr.size()-1] && radius[i] == arr2[arr2.size()-1])
-    //     {
-    //         // nums.pop_back();
-    //         // arr2.pop_back();
-    //     }
-    //     else
-    //     {
-    //         nums.push_back(color[i]);
-    //         arr2.push_back(radius[i]);
-    //     }
-    // }
-    
-    // return nums.size();
-    
-    stack<pair<int,int>> st;
-    st.push({color[0],radius[0]});
-    for(int i=1;i<N;i++)
+    // stack<int>st;
+    vector<long long> nums,arr2;
+    nums.push_back(color[0]);
+    arr2.push_back(radius[0]);
+    for(long long i=1;i<N;i++)
     {
-        if(st.empty())
+        if(color[i] == nums[nums.size()-1] && radius[i] == arr2[arr2.size()-1])
         {
-            st.push({color[i],radius[i]});
-            continue;
-        }
-        
-        if(color[i] == st.top().first && radius[i] == st.top().second)
-        {
-            st.pop();
+            nums.pop_back();
+            arr2.pop_back();
         }
         else
-            st.push({color[i],radius[i]});
+        {
+            nums.push_back(color[i]);
+            arr2.push_back(radius[i]);
+        }
     }
     
-    return st.size();
+    return nums.size();
+    
+    // stack<pair<int,int>> st;
+    // st.push({color[0],radius[0]});
+    // for(int i=1;i<N;i++)
+    // {
+    //     if(st.empty())
+    //     {
+    //         st.push({color[i],radius[i]});
+    //         continue;
+    //     }
+        
+    //     if(color[i] == st.top().first && radius[i] == st.top().second)
+    //     {
+    //         st.pop();
+    //     }
+    //     else
+    //         st.push({color[i],radius[i]});
+    // }
+    
+    // return st.size();
     }
 };
 
