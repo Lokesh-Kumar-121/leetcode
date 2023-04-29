@@ -16,67 +16,97 @@ public:
 
     vector<long long> smallerSum(int n,vector<int> &arr){
         // Code here
-        vector<pair<long long,long long>>nums;
-        for(int i=0;i<arr.size();i++)
-        {
-            nums.push_back({arr[i],i});
-        }
+        // vector<pair<long long,long long>>nums;
+        // for(int i=0;i<arr.size();i++)
+        // {
+        //     nums.push_back({arr[i],i});
+        // }
         
+        // sort(nums.begin(),nums.end());
+        // // for(auto x:nums)
+        // //     cout<<x.first<<" ";
+        // // cout<<endl;
+        
+        // vector<long long>prefix;
+        // prefix.push_back(nums[0].first);
+        
+        // for(int i=1;i<nums.size();i++)
+        // {
+            
+        //     prefix.push_back(nums[i].first + prefix[i-1]);
+            
+        // }
+        
+        // // for(auto x:prefix)
+        // //     cout<<x<<" ";
+        // // cout<<endl;
+        
+        // vector<long long>pre;
+        // pre.push_back(0);
+        
+        // for(int i=1;i<prefix.size();i++)
+        // {
+        //     if(nums[i].first == nums[i-1].first)
+        //     {
+        //         pre.push_back(pre[pre.size()-1]);
+        //     }
+        //     else
+        //     {
+        //         pre.push_back(prefix[i]-nums[i].first);
+        //     }
+        // }
+        
+        
+        
+        // // for(auto x:pre)
+        // //     cout<<x<<" ";
+        // // cout<<endl;
+        
+        // for(int i=0;i<nums.size();i++)
+        // {
+        //     nums[i].first = pre[i]; 
+        // }
+        
+        // sort(nums.begin(),nums.end(),cmp);
+        
+        // pre.clear();
+        
+        // for(int i=0;i<nums.size();i++)
+        // {
+        //     pre.push_back(nums[i].first);
+        // }
+        
+        // return pre;
+        
+        // using binary search to reduce some space
+        
+        vector<int>nums = arr;
         sort(nums.begin(),nums.end());
-        // for(auto x:nums)
-        //     cout<<x.first<<" ";
-        // cout<<endl;
+        vector<long long>pre(n);
+        vector<long long>ans(n);
+        pre[0] = nums[0];
         
-        vector<long long>prefix;
-        prefix.push_back(nums[0].first);
-        
-        for(int i=1;i<nums.size();i++)
+        for(int i=1;i<n;i++)
         {
-            
-            prefix.push_back(nums[i].first + prefix[i-1]);
-            
+            pre[i] = pre[i-1] + nums[i];
         }
         
-        // for(auto x:prefix)
+        // for(auto x:nums)
         //     cout<<x<<" ";
         // cout<<endl;
-        
-        vector<long long>pre;
-        pre.push_back(0);
-        
-        for(int i=1;i<prefix.size();i++)
-        {
-            if(nums[i].first == nums[i-1].first)
-            {
-                pre.push_back(pre[pre.size()-1]);
-            }
-            else
-            {
-                pre.push_back(prefix[i]-nums[i].first);
-            }
-        }
-        
-        
-        
         // for(auto x:pre)
         //     cout<<x<<" ";
         // cout<<endl;
         
-        for(int i=0;i<nums.size();i++)
+        for(int i=0;i<n;i++)
         {
-            nums[i].first = pre[i]; 
+            // int ind = binary_search(nums.begin(),nums.end(),arr[i]);
+            int ind = lower_bound(nums.begin(),nums.end(),arr[i]) - nums.begin();
+            // cout<<"#"<<ind<<endl;
+            ans[i] = pre[ind] - arr[i];
         }
         
-        sort(nums.begin(),nums.end(),cmp);
-        
-        pre.clear();
-        
-        for(int i=0;i<nums.size();i++)
-        {
-            pre.push_back(nums[i].first);
-        }
-        
-        return pre;
+        return ans;
     }
 };
 
