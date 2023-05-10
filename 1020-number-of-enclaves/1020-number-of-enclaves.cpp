@@ -1,36 +1,54 @@
 class Solution {
-    int helper(vector<vector<int>>& grid, int sr, int sc){
-        int m = grid.size(), n = grid[0].size();
-        if (sr == -1 || sr == m || sc == -1 || sc == n){
-            return -1;
-        }
-        if (grid[sr][sc] == 0){
-            return 0;
-        }
-        grid[sr][sc] = 0;
-        int op1 = helper(grid, sr+1, sc);
-        int op2 = helper(grid, sr-1, sc);
-        int op3 = helper(grid, sr, sc+1);
-        int op4 = helper(grid, sr, sc-1);
-        if (op1 == -1 || op2 == -1 || op3 == -1 || op4 == -1){
-            return -1;
-        }
-        return 1 + op1 + op2 + op3 + op4;
-    }
 public:
+    
+    void dfs(int row,int col,vector<vector<int>>&grid)
+    {
+        if(row >= grid.size() || col >= grid[0].size())
+            return;
+        
+        grid[row][col] = 2;
+        
+        if(row < grid.size() - 1 && grid[row+1][col] == 1)
+            dfs(row+1,col,grid);
+        
+        if(col < grid[0].size() - 1 && grid[row][col+1]  == 1)
+            dfs(row,col+1,grid);
+        
+        if(row > 0 && grid[row-1][col] == 1)
+            dfs(row-1,col,grid);
+        
+        if(col > 0 && grid[row][col-1]  == 1)
+            dfs(row,col-1,grid);
+          
+    }
+    
     int numEnclaves(vector<vector<int>>& grid) {
-        int count =0 ;
-        int m = grid.size(), n = grid[0].size();
-        for(int i=1; i<m-1; i++){
-            for(int j=1; j<n-1; j++){
-                if (grid[i][j] == 1){
-                    int op = helper(grid, i, j);
-                    if (op!= -1){
-                        count += op;
+        
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                if(i == 0 || j == 0 || i == grid.size()-1 || j == grid[0].size()-1)
+                {
+                    if(grid[i][j] == 1)
+                    {
+                        dfs(i,j,grid);
                     }
                 }
             }
         }
+        
+        int count = 0;
+        for(auto x:grid)
+        {
+            for(auto z:x)
+            {
+                if(z == 1)
+                    count++;
+            }
+        }
+        
         return count;
+        
     }
 };
