@@ -2,9 +2,9 @@ class MyHashSet {
     
     unordered_set<int>sett;
 public:
-    MyHashSet() {
+//     MyHashSet() {
         
-    }
+//     }
     
     void add(int key) {
         
