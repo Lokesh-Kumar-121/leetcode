@@ -6,15 +6,13 @@ using namespace std;
 class Solution {
   public:
     int setBits(int N) {
-        // Write Your Code here
-        int count=0;
-        while(N>0)
-        {
-            if(N&1)
-                count++;
-            N=N>>1;
+        int cnt = 0;
+        for(int i = 0; i < 32; i++){
+            if((1 << i) & N){
+                cnt++;
+            }
         }
-        return count;
+        return cnt;
     }
 };
 
